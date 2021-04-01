@@ -9,7 +9,6 @@ describe('Instaclone contract', () => {
     let author
     let tipper
 
-
     before(async () => {
         InstacloneContract = await ethers.getContractFactory("Instaclone");
         [owner, author, tipper, ...addrs] = await ethers.getSigners();

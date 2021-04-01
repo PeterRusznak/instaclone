@@ -1,23 +1,15 @@
 import React, { useEffect, useState } from 'react';
-
 import Uploader from './Uploader.js';
-
 import Instaclone from "./Instaclone.json"
-
-//Declare IPFS
-//const ipfsClient = require('ipfs-http-client')
-//const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' }) // leaving out the arguments will default to these values
 
 const ipfsAPI = require('ipfs-api')
 const ipfs = ipfsAPI('ipfs.infura.io', '5001', { protocol: 'https' })
-
 const ethers = require('ethers');
 
 function App() {
 
   const [buffer, setBuffer] = useState();
   const [contract, setContract] = useState();
-
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -49,7 +41,6 @@ function App() {
     load();
   }, []);
 
-
   const captureFile = event => {
     event.preventDefault()
     const file = event.target.files[0]
@@ -80,17 +71,11 @@ function App() {
   }
 
   const tipImageOwner = async (id, tipAmount) => {
-
     console.log(id, tipAmount);
     const tx = await contract.tipImageOwner(id, { value: tipAmount })
     console.log("tx = ", tx)
     const receipt = await tx.wait();
     console.log("receipt = ", receipt)
-
-    /* this.state.decentragram.methods.tipImageOwner(id).send({ from: this.state.account, value: tipAmount }).on('transactionHash', (hash) => {
-       this.setState({ loading: false })
-     })
-     */
   }
 
   return (
@@ -107,27 +92,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
-/*
-
-
-      <form onSubmit={sub}>
-        <input type="text" onChange={handleChange}></input>
-        <input type="submit" />
-      </form>
-
-
-const sub = async (e) => {
-  e.preventDefault();
-  const tx = await contract.setName(name);
-  console.log(tx)
-  const receipt = await tx.wait();
-  console.log(receipt)
-}
-
- let handleChange = (e) => {
-    setName(e.target.value);
-    console.log(name)
-  }
-  */
