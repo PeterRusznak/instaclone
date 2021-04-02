@@ -1,7 +1,7 @@
 import React from 'react';
 import Identicon from 'identicon.js';
 const ethers = require('ethers');
-const Uploader = ({ images, uploadImage, captureFile, tipImageOwner }) => {
+const Renderer = ({ images, uploadImage, captureFile, tipImageOwner }) => {
     let imageDescription = "";
     return (
         <div className="container-fluid mt-5">
@@ -27,13 +27,10 @@ const Uploader = ({ images, uploadImage, captureFile, tipImageOwner }) => {
                         </div>
                         <button type="submit" className="btn btn-primary btn-block btn-lg">Upload!</button>
                     </form>
-
-
                     <p>&nbsp;</p>
                     {images.map((image, key) => {
                         return (
                             <div className="card mb-4" key={key} >
-
                                 <div className="card-header">
                                     <img
                                         className='mr-2'
@@ -41,12 +38,8 @@ const Uploader = ({ images, uploadImage, captureFile, tipImageOwner }) => {
                                         height='30'
                                         src={`data:image/png;base64,${new Identicon(image.author, 30).toString()}`}
                                     />
-
                                     <small className="text-muted">{image.author}</small>
                                 </div>
-
-
-
                                 <ul id="imageList" className="list-group list-group-flush">
                                     <li className="list-group-item">
                                         <p className="text-center"><img src={`https://ipfs.infura.io/ipfs/${image.hash}`} style={{ maxWidth: '420px' }} /></p>
@@ -69,17 +62,13 @@ const Uploader = ({ images, uploadImage, captureFile, tipImageOwner }) => {
                                         </button>
                                     </li>
                                 </ul>
-
-
-
                             </div>
                         )
                     })}
-
                 </div>
             </div>
         </div >
     )
 }
 
-export default Uploader
+export default Renderer
